@@ -76,7 +76,7 @@
 							</li> -->
 
 							<li>
-								<a href="contact.php">How to Order?</a>
+								<a href="#">How to Order?</a>
 							</li>
 							<li>
 								<a href="view.php">View</a>
