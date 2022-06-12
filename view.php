@@ -122,7 +122,7 @@ include_once("koneksi.php");
                                 <th>Nama Produk</th>
                                 <th>Harga Produk</th>
                                 <th>Kategori</th>
-                                <th width='60%'>Foto Produk</th>
+                                <th width='20%'>Foto Produk</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
