@@ -1,11 +1,34 @@
 <?php
 include_once("koneksi.php");
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: view.php");
+}
+
+//Ucapan Selamat
+//ubah timezone menjadi jakarta
+date_default_timezone_set("Asia/Jakarta");
+
+//ambil jam dan menit
+$jam = date('H:i');
+
+//atur salam menggunakan IF
+if ($jam > '05:30' && $jam < '10:00') {
+    $salam = 'Pagi';
+} elseif ($jam >= '10:00' && $jam < '15:00') {
+    $salam = 'Siang';
+} elseif ($jam < '18:00') {
+    $salam = 'Sore';
+} else {
+    $salam = 'Malam';
+}
 ?>
 
 <html>
 
 <head>
-    <title>Homepage</title>
+    <title>Admin</title>
     <!-- <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"> -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -59,66 +82,18 @@ include_once("koneksi.php");
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li>
-                                <a href="index.php">Home</a>
+                                <a href="index.php"><?php echo "Selamat " . $salam .  ", " . $_SESSION['username'] . "!"; ?></a>
                             </li>
                             <li>
-                                <a href="#">How to Order?</a>
+                                <a href="logout.php">Logout</a>
                             </li>
-                            <li class="active-menu">
+                            <!-- <li class="active-menu">
                                 <a href="#">View</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>
             </div>
-        </div>
-
-        <!-- Header Mobile -->
-        <div class="wrap-header-mobile">
-            <!-- Logo moblie -->
-            <div class="logo-mobile">
-                <a href="index.php"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
-            </div>
-
-            <!-- Icon header -->
-            <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-                    <i class="zmdi zmdi-search"></i>
-                </div>
-
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-                    <i class="zmdi zmdi-shopping-cart"></i>
-                </div>
-
-                <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-                    <i class="zmdi zmdi-favorite-outline"></i>
-                </a>
-            </div>
-
-            <!-- Button show menu -->
-            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </div>
-        </div>
-
-
-        <!-- Menu Mobile -->
-        <div class="menu-mobile">
-
-            <ul class="main-menu-m">
-                <li>
-                    <a href="index.php">Home</a>
-                    <span class="arrow-main-menu-m">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </span>
-                </li>
-
-                <li>
-                    <a href="contact.php">How to Order?</a>
-                </li>
-            </ul>
         </div>
 
         <!-- Modal Search -->
